@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Little Legends League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --pastel-pink: #FFD6E0;
+      --pastel-blue: #B5E3FF;
+      --pastel-yellow: #FFF7AE;
+      --pastel-green: #D9FDF3;
+      --pastel-purple: #D9D4FF;
+      --cloud: #FFFFFF;
+      --star: #FFEB3B;
+      --heart: #FF6F91;
+      --teddy: #C19A6B;
+      --font-cute: 'Comic Sans MS', 'Comic Sans', cursive;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-cute), Arial, sans-serif;
+      background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pastel-blue) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .decor-bar {
+      width: 100%;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 26px;
+      padding-top: 12px;
+      padding-bottom: 2px;
+    }
+    .decor-bar img {
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+    .decor-cloud {
+      width: 85px;
+      margin-top: 6px;
+    }
+    .decor-star {
+      width: 40px;
+      margin-top: 18px;
+    }
+    .decor-teddy {
+      width: 60px;
+      margin-top: 12px;
+    }
+    .decor-cloud.sm {
+      width: 55px;
+      margin-top: 28px;
+    }
+    .decor-star.sm {
+      width: 26px;
+      margin-top: 32px;
+    }
+    .decor-teddy.sm {
+      width: 38px;
+      margin-top: 20px;
+    }
+    header {
+      background: var(--pastel-yellow);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+      padding: 20px 0 10px 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      color: #7D5A5A;
+      text-shadow: 1px 2px 4px #fff;
+    }
+    .motto {
+      display: block;
+      margin: 10px auto 0 auto;
+      font-size: 1.35rem;
+      color: #C94F7C;
+      font-weight: bold;
+      letter-spacing: 1px;
+      background: var(--pastel-pink);
+      border-radius: 20px;
+      padding: 6px 18px 6px 14px;
+      box-shadow: 0 1px 6px rgba(255,174,209,0.14);
+      max-width: 440px;
+      text-align: center;
+      font-family: var(--font-cute), Arial, sans-serif;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #7D5A5A;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0 18px;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--heart);
+    }
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.84);
+      border-radius: 32px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+      padding: 32px 20px 36px 20px;
+      position: relative;
+      z-index: 1;
+    }
+    section {
+      margin-bottom: 44px;
+    }
+    h2 {
+      font-size: 2rem;
+      color: #A6786D;
+      margin-bottom: 12px;
+    }
+    .about-blockquote {
+      font-size: 1.11em;
+      color: #A6786D;
+      background: var(--pastel-blue);
+      border-left: 5px solid var(--pastel-pink);
+      border-radius: 16px;
+      padding: 18px 24px;
+      margin: 20px 0 0 0;
+      font-family: var(--font-cute), Arial, sans-serif;
+    }
+    .theme-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .theme-card {
+      background: var(--pastel-green);
+      border-radius: 16px;
+      padding: 16px 20px;
+      flex: 1 1 230px;
+      box-shadow: 0 2px 12px rgba(181,227,255,0.11);
+      min-width: 200px;
+      text-align: center;
+      font-size: 1.08rem;
+      position: relative;
+    }
+    .gallery-images {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    .gallery-images img {
+      border-radius: 16px;
+      width: 145px;
+      height: 110px;
+      object-fit: cover;
+      background: var(--pastel-blue);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      border: 2px solid var(--pastel-yellow);
+      margin-bottom: 8px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 350px;
+      margin: auto;
+    }
+    input, textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1.5px solid var(--pastel-purple);
+      font-family: inherit;
+      background: var(--pastel-yellow);
+      font-size: 1rem;
+    }
+    button {
+      background: var(--heart);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #d15b73;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 8px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1em;
+      color: #6c5c37;
+    }
+    .contact-row img {
+      width: 28px;
+      vertical-align: middle;
+    }
+    .and-more {
+      text-align: left;
+      font-size: 1.08em;
+      color: #A6786D;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      padding-left: 2px;
+    }
+    .goal-passion {
+      font-size: 1.14em;
+      color: #A6786D;
+      margin-top: 14px;
+      margin-bottom: 2px;
+      text-align: left;
+      font-weight: bold;
+      padding-left: 2px;
+    }
+    .passion-parade {
+      display: inline-block;
+      background: var(--pastel-pink);
+      color: #fff;
+      border-radius: 16px;
+      padding: 2px 16px;
+      font-size: 1em;
+      font-weight: bold;
+      margin-left: 10px;
+      letter-spacing: 1px;
+      box-shadow: 0 1px 3px rgba(255,174,209,0.18);
+      vertical-align: middle;
+      color: #C94F7C;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .theme-list {
+        flex-direction: column;
+      }
+      main {
+        padding: 12px 4px 22px 4px;
+      }
+      .decor-bar {
+        gap: 9px;
+      }
+      .decor-cloud, .decor-teddy, .decor-star {
+        width: 48px !important;
+      }
+      .motto {
+        font-size: 1rem;
+        max-width: 90vw;
+        padding: 4px 7vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative bar at the top -->
+  <div class="decor-bar">
+    <img src="https://img.icons8.com/clouds/100/000000/cloud.png" class="decor-cloud" alt="cloud" />
+    <img src="https://img.icons8.com/color/48/000000/star.png" class="decor-star" alt="star" />
+    <img src="https://img.icons8.com/color/96/000000/teddy-bear.png" class="decor-teddy" alt="teddybear" />
+    <img src="https://img.icons8.com/clouds/100/000000/cloud.png" class="decor-cloud sm" alt="cloud" />
+    <img src="https://img.icons8.com/color/48/000000/star.png" class="decor-star sm" alt="star" />
+    <img src="https://img.icons8.com/color/96/000000/teddy-bear.png" class="decor-teddy sm" alt="teddybear" />
+    <img src="https://img.icons8.com/clouds/100/000000/cloud.png" class="decor-cloud sm" alt="cloud" />
+  </div>
+  <header>
+    <h1>Little Legends League</h1>
+    <span class="motto">🗯️ “Dream it. Try it. Be it.”</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <div class="about-blockquote">
+        Welcome to <b>Little Legends League</b> — the cutest club with the BIGGEST dreams! 🧁🎓💼<br><br>
+        At L3, we’re all about exploring awesome careers, discovering what makes you shine, and having way too much fun while doing it! Whether you wanna be a doctor, an actor, a chef, a teacher, a lawyer, or even a cupcake designer (why not?? 🧁✨), this is your place to dream it, try it, and totally SLAY it.<br><br>
+        We do mini-events, cool challenges, creative projects, and sprinkle kindness like confetti 🎉💖<br><br>
+        Because guess what?<br>
+        💡 Every big legend… was once a little one.<br>
+        And YOU? You’re already on your way.
+      </div>
+      <br>
+      <b>Our Themes Include:</b>
+      <div class="theme-list">
+        <div class="theme-card">
+          <b>Doctor's Day</b><br>
+          Toy hospital, bandages, learn & play medical fun!
+        </div>
+        <div class="theme-card">
+          <b>Chef's Day</b><br>
+          Make lemonade, easy snacks, foodie games.
+        </div>
+        <div class="theme-card">
+          <b>Acting Day</b><br>
+          Skits, improv, dress-up, and showtime!
+        </div>
+        <div class="theme-card">
+          <b>Awareness Day</b><br>
+          Drug awareness, cybersecurity, safety and more.
+        </div>
+        <div class="theme-card">
+          <b>Inspirational Day</b><br>
+          Meet legends, hear stories, dream big!
+        </div>
+        <div class="theme-card">
+          <b>Athletic Day</b><br>
+          Sports, races, team games, and movement.
+        </div>
+      </div>
+      <div class="and-more">and more...</div>
+      <div class="goal-passion">
+        Our goal: <b>Fun, Learning, Friendship, and Inspiration!</b>
+        <span class="passion-parade">Passion Parade</span>
+      </div>
+    </section>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <p>
+        Take a peek at our adventures! (Sample images)
+      </p>
+      <div class="gallery-images">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=400&q=80" alt="Kids playing">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?fit=crop&w=400&q=80" alt="Team fun">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?fit=crop&w=400&q=80" alt="Creative art">
+        <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?fit=crop&w=400&q=80" alt="Story time">
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-info">
+        <div class="contact-row">
+          <img src="https://img.icons8.com/color/48/000000/phone.png" alt="phone icon"/>
+          <span>4696379340</span>
+        </div>
+        <div class="contact-row">
+          <img src="https://img.icons8.com/color/48/000000/gmail-new.png" alt="gmail icon"/>
+          <span>gopinathpavitra@gmail.com</span>
+        </div>
+      </div>
+      <p>
+        Want to know more or join us? Reach out!
+      </p>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Parent's Email" required>
+        <textarea rows="4" placeholder="Your Message"></textarea>
+        <button type="submit" disabled>Send (Demo Only)</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
